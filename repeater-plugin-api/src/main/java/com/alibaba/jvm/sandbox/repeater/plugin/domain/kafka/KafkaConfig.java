@@ -36,7 +36,7 @@ public class KafkaConfig {
             return server;
         }
 
-        return "common-kafka-test.nioint.com:39094";
+        return "";
     }
 
     public void setServer(String server) {
@@ -55,7 +55,7 @@ public class KafkaConfig {
         if (username!=null) {
             return this.username;
         }
-        return "feiTjL4l1Dif";
+        return "";
     }
 
     public void setUsername(String username) {
@@ -66,7 +66,7 @@ public class KafkaConfig {
         if (password!=null) {
             return this.password;
         }
-        return "TPdL4aPOnk3O";
+        return "";
     }
 
     public void setPassword(String password) {
@@ -78,7 +78,7 @@ public class KafkaConfig {
             return recordTopic;
         }
 
-        return "nio_repeator_topic";
+        return "";
     }
 
     public void setRecordTopic(String recordTopic) {
@@ -90,7 +90,7 @@ public class KafkaConfig {
             return repeatTopic;
         }
 
-        return "nio_repeator_repeat_topic";
+        return "";
     }
 
     public void setRepeatTopic(String repeatTopic) {
