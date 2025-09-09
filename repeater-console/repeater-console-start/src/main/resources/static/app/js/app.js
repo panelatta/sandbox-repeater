@@ -13,7 +13,7 @@ var innerPost = function (uri, data, callback) {
 };
 
 /**
- * 异步ajax请求
+ * Async ajax request
  * @param uri
  * @param data
  * @param type
@@ -33,13 +33,13 @@ var innerAsyncAjax = function (uri, data, type, callback) {
         dataType: 'json',
         error: function (XMLHttpRequest) {
             hideLoading(100)
-            notice("服务抽风了，网络异常 " + XMLHttpRequest.responseText, false);
+            notice(t('message.network.error') + ' ' + XMLHttpRequest.responseText, false);
         }
     });
 };
 
 /**
- * 同步的ajax请求
+ * Sync ajax request
  * @param uri
  * @param data
  * @param type
@@ -59,7 +59,7 @@ var innerSyncAjax = function (uri, data, type, callback) {
         dataType: 'json',
         error: function (XMLHttpRequest) {
             hideLoading(500)
-            notice("服务抽风了，网络异常 " + XMLHttpRequest.responseText, false);
+            notice(t('message.network.error') + ' ' + XMLHttpRequest.responseText, false);
         }
     });
 };

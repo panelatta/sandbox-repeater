@@ -1,0 +1,80 @@
+/**
+ * 国际化样式文件
+ * Internationalization styles
+ */
+
+/* 语言切换下拉菜单样式 */
+.language-switch {
+    padding: 8px 16px;
+    transition: all 0.3s ease;
+}
+
+.language-switch:hover {
+    background-color: #f8f9fa;
+    text-decoration: none;
+}
+
+.language-switch.active {
+    background-color: #007bff;
+    color: white;
+}
+
+.language-switch.active:hover {
+    background-color: #0056b3;
+    color: white;
+}
+
+.language-switch .fa-check {
+    margin-right: 8px;
+    transition: visibility 0.3s ease;
+}
+
+/* 当前语言显示样式 */
+#current-language {
+    margin-left: 5px;
+    font-weight: 500;
+}
+
+/* 语言切换按钮样式 */
+#languageDropdown {
+    color: rgba(255, 255, 255, .8);
+    transition: color 0.3s ease;
+}
+
+#languageDropdown:hover {
+    color: white;
+    text-decoration: none;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    #current-language {
+        display: none;
+    }
+    
+    .language-switch {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+}
+
+/* 加载状态样式 */
+.i18n-loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* 翻译完成的淡入效果 */
+.i18n-fade-in {
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+

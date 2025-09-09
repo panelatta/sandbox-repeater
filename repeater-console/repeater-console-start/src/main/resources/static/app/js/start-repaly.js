@@ -13,7 +13,7 @@ jQuery(function ($) {
                 'margin-top': modalHeight
             });
         });
-        // 初始化场景选择列表
+        // Initialize scenario selection list
         innerPost("/module/byName.json", {'appName': appName}, function (response) {
             var sSelectArea = $("#machine-select-group");
             var sSelect = $("#machine-select");
@@ -21,7 +21,7 @@ jQuery(function ($) {
             sSelect.empty();
             if (response.success && response.data.length > 0) {
                 jQuery.each(response.data, function (i, val) {
-                    var version = (val.version === '-' ? '' : ' 版本:' + val.version);
+                    var version = (val.version === '-' ? '' : t('version.info') + val.version);
                     if (i === 0) {
                         sSelect.append('<option value="' + val.ip + '" selected>' + val.ip + '[' + val.environment + version + ']' + '</option>')
                     } else {
@@ -42,7 +42,7 @@ jQuery(function ($) {
 
     $("#start-replay-btn").on('click', function () {
         if (!canReplay) {
-            notify("没有可用回放机器，请先挂载");
+            notify(t('message.no.replay.machine'));
             return false;
         }
         var appName = $("#replay-appName").val();
@@ -55,14 +55,14 @@ jQuery(function ($) {
                 hideLoading(10)
                 if (data.success) {
                     openNewWindow(protocol + "//" + host + "/replay/detail.htm?repeatId=" + data.data + "&appName=" + appName,
-                        "执行发起成功，您的浏览器阻止了结果页面自动打开，请先允许或点击前往 >> ")
+                        t('message.execution.success'))
                 } else {
                     notice(data.message, data.success)
                 }
             },
             error: function (XMLHttpRequest) {
                 hideLoading(10);
-                notice("服务抽风了，网络异常 " + XMLHttpRequest.responseText, false);
+                notice(t('message.network.error') + ' ' + XMLHttpRequest.responseText, false);
             }
         })
     });

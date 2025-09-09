@@ -2,7 +2,7 @@
     <div class="modal-dialog" style="width: 600px">
         <div class="modal-content bg-primary">
             <div class="modal-header">
-                <h4 class="modal-title">开始回放 </h4>
+                <h4 class="modal-title" data-i18n="modal.title.start.replay">开始回放 </h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
@@ -11,7 +11,7 @@
                     <div class="col-lg-12 col-xs-12">
                         <form class="form-inline" id="startReplayForm" method="post">
                             <div class="form-group" id="machine-select-group" style="display: none">
-                                <label for="scenario-name" class="col-md-3 control-label">机器</label>
+                                <label for="scenario-name" class="col-md-3 control-label" data-i18n="form.label.machine">机器</label>
                                 <div class="col-md-8">
                                     <select type="text" class="form-control" name="ip" id="machine-select" autocomplete="off" style="width: 300px">
                                     </select>
@@ -20,15 +20,15 @@
                             <div class="form-group" id="machine-help" style="display: none">
                                 <label for="scenario-name" class="col-md-3 control-label" style="width: 100px">机器</label>
                                 <div class="col-md-8">
-                                    <label class="control-label" style="width: 300px">没有可回放的机器</label>
+                                    <label class="control-label" style="width: 300px" data-i18n="message.no.replay.machine">没有可回放的机器</label>
                                 </div>
                             </div>
                             <div class="form-group" style="margin-top:10px">
-                                <label for="scenario-name" class="col-md-3 control-label" style="width: 100px">MOCK</label>
+                                <label for="scenario-name" class="col-md-3 control-label" style="width: 100px" data-i18n="form.label.mock">MOCK</label>
                                 <div class="col-md-8">
                                     <div style="width: 280px">
-                                        <input class="form-control" type="radio" name="mock" value="true" checked> 开
-                                        <input class="form-control" type="radio" name="mock" value="false" > 关
+                                        <input class="form-control" type="radio" name="mock" value="true" checked> <span data-i18n="text.on">开</span>
+                                        <input class="form-control" type="radio" name="mock" value="false" > <span data-i18n="text.off">关</span>
                                     </div>
                                 </div>
                             </div>
@@ -39,8 +39,8 @@
                 </div>
             </div>
             <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-outline-light pull-left" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-outline-light" id="start-replay-btn">执行</button>
+                <button type="button" class="btn btn-outline-light pull-left" data-dismiss="modal" data-i18n="button.cancel">取消</button>
+                <button type="button" class="btn btn-outline-light" id="start-replay-btn" data-i18n="button.execute">执行</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

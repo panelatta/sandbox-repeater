@@ -8,7 +8,7 @@
     <div class="modal-dialog">
         <div class="modal-content bg-success">
             <div class="modal-header">
-                <h4 class="modal-title">提示</h4>
+                <h4 class="modal-title" data-i18n="modal.title.tip">提示</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
@@ -16,8 +16,8 @@
                 <p id="success-message-area"></p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-light pull-left" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-outline-light" data-dismiss="modal">确定</button>
+                <button type="button" class="btn btn-outline-light pull-left" data-dismiss="modal" data-i18n="button.cancel">取消</button>
+                <button type="button" class="btn btn-outline-light" data-dismiss="modal" data-i18n="button.confirm">确定</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -28,7 +28,7 @@
     <div class="modal-dialog">
         <div class="modal-content bg-success">
             <div class="modal-header">
-                <h4 class="modal-title">提示</h4>
+                <h4 class="modal-title" data-i18n="modal.title.tip">提示</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
@@ -36,8 +36,8 @@
                 <p id="danger-message-area"></p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-light pull-left" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-outline-light" data-dismiss="modal">确定</button>
+                <button type="button" class="btn btn-outline-light pull-left" data-dismiss="modal" data-i18n="button.cancel">取消</button>
+                <button type="button" class="btn btn-outline-light" data-dismiss="modal" data-i18n="button.confirm">确定</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

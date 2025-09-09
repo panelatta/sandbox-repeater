@@ -6,7 +6,7 @@
     <link rel="shortcut icon" href="/favorite.ico" type="image/x-icon"/>
     <link rel=”icon” href="/favorite.ico" type="image/x-icon"/>
     <link rel="bookmark" href="/favorite.ico" type="image/x-icon"/>
-    <title>在线流量 - Repeater</title>
+    <title data-i18n="page.title.home">在线流量 - Repeater</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -33,6 +33,20 @@
 
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-globe"></i> 
+                    <span id="current-language">中文</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="languageDropdown">
+                    <a class="dropdown-item language-switch active" href="#" data-lang="zh-CN">
+                        <i class="fas fa-check"></i> 中文
+                    </a>
+                    <a class="dropdown-item language-switch" href="#" data-lang="en-US">
+                        <i class="fas fa-check" style="visibility: hidden;"></i> English
+                    </a>
+                </div>
+            </li>
         </ul>
     </nav>
     <!-- /.navbar -->
@@ -60,7 +74,7 @@
                         <a href="#" class="nav-link active">
                             <i class="nav-icon fa fa-database"></i>
                             <p>
-                                在线流量
+                                <span data-i18n="nav.online.traffic">在线流量</span>
                                 <span class="right badge badge-success">New</span>
                             </p>
                         </a>
@@ -69,7 +83,7 @@
                         <a href="/config/list.htm" class="nav-link">
                             <i class="nav-icon fa fa-cogs"></i>
                             <p>
-                                配置管理
+                                <span data-i18n="nav.config.management">配置管理</span>
                             </p>
                         </a>
                     </li>
@@ -77,7 +91,7 @@
                         <a href="/module/list.htm" class="nav-link">
                             <i class="nav-icon fa fa-heartbeat"></i>
                             <p>
-                                在线模块
+                                <span data-i18n="nav.online.modules">在线模块</span>
                             </p>
                         </a>
                     </li>
@@ -95,12 +109,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>在线流量</h1>
+                        <h1 data-i18n="page.header.online.traffic">在线流量</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">首页</a></li>
-                            <li class="breadcrumb-item active">在线流量</li>
+                            <li class="breadcrumb-item"><a href="#" data-i18n="breadcrumb.home">首页</a></li>
+                            <li class="breadcrumb-item active" data-i18n="breadcrumb.online.traffic">在线流量</li>
                         </ol>
                     </div>
                 </div>
@@ -114,11 +128,11 @@
                     <div class="card card-blue card-outline">
                         <div class="card-header border-0">
                             <h5 class="card-title text-blue">
-                                调用列表 <i class="fa fa-database"></i>
+                                <span data-i18n="page.header.call.list">调用列表</span> <i class="fa fa-database"></i>
                             </h5>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-success btn-sm float-right"
-                                        data-loading-text="searching" id="batch-batch-replay">
+                                        data-loading-text="searching" id="batch-batch-replay" data-i18n="button.batch.replay">
                                     批量回放
                                 </button>
                             </div>
@@ -128,22 +142,22 @@
                                 <div class="col-lg-12">
                                     <form class="form-inline" method="get" action="search.htm">
                                         <div class="form-group" style="margin-left:10px">
-                                            <label for="appName">应用名:</label>
-                                            <input type="text" class="form-control" placeholder="appName" name="appName"
+                                            <label for="appName" data-i18n="form.label.app.name">应用名:</label>
+                                            <input type="text" class="form-control" data-i18n="placeholder.app.name" placeholder="appName" name="appName"
                                                    value="$!requestParams.appName" autocomplete="off"
                                                    data-toggle="tooltip"
                                                    title="appName" style="width: 210px;margin-left:10px">
                                         </div>
                                         <div class="form-group" style="margin-left: 10px">
-                                            <label for="TraceId">TraceId:</label>
-                                            <input type="text" class="form-control" placeholder="TraceId" name="traceId"
+                                            <label for="TraceId" data-i18n="form.label.trace.id">TraceId:</label>
+                                            <input type="text" class="form-control" data-i18n="placeholder.trace.id" placeholder="TraceId" name="traceId"
                                                    value="$!requestParams.traceId" autocomplete="off"
                                                    data-toggle="tooltip"
                                                    title="TraceId" style="width: 210px;margin-left:10px">
                                         </div>
                                         <div class="form-group" style="margin-left: 20px">
                                             <button type="submit" class="btn btn-primary"
-                                                    data-loading-text="searching" id="search-online-btn">
+                                                    data-loading-text="searching" id="search-online-btn" data-i18n="button.search">
                                                 查询 <i class="fa fa-search icon-on-right bigger"></i>
                                             </button>
                                         </div>
@@ -154,15 +168,15 @@
                                 #if($pagerWrapper.content && $pagerWrapper.content.size() > 0)
                                     <thead>
                                     <tr>
-                                        <th><input data-toggle="tooltip" title="全选" type="checkbox" id="check-all"
+                                        <th><input data-toggle="tooltip" data-i18n="tooltip.select.all" title="全选" type="checkbox" id="check-all"
                                                    name="check-all" value=""/></th>
-                                        <th>应用名</th>
-                                        <th>流量入口</th>
-                                        <th>TraceID</th>
-                                        <th>环境</th>
-                                        <th>机器</th>
-                                        <th>时间</th>
-                                        <th width="100px">操作</th>
+                                        <th data-i18n="table.header.app.name">应用名</th>
+                                        <th data-i18n="table.header.traffic.entry">流量入口</th>
+                                        <th data-i18n="table.header.trace.id">TraceID</th>
+                                        <th data-i18n="table.header.environment">环境</th>
+                                        <th data-i18n="table.header.machine">机器</th>
+                                        <th data-i18n="table.header.time">时间</th>
+                                        <th width="100px" data-i18n="table.header.operation">操作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -182,17 +196,17 @@
                                                 <a target="_blank"
                                                    href="detail.htm?appName=$!{data.appName}&traceId=$!{data.traceId}"
                                                    class="btn btn-primary btn-xs" data-toggle="tooltip"
-                                                   title="查看详情">详情</a>
+                                                   data-i18n="tooltip.view.detail" title="查看详情"><span data-i18n="button.detail">详情</span></a>
                                                 <button class="btn btn-success btn-xs btn-replay" data-toggle="tooltip"
-                                                        title="执行回放" data-id="$!{data.traceId}"
-                                                        data-app="$!{data.appName}">回放
+                                                        data-i18n="tooltip.execute.replay" title="执行回放" data-id="$!{data.traceId}"
+                                                        data-app="$!{data.appName}"><span data-i18n="button.replay">回放</span>
                                                 </button>
                                             </td>
                                         </tr>
                                         #end
                                     </tbody>
                                 #else
-                                    <h5 style="padding-left: 10px;padding-top: 20px"> 没有录制到任何数据</h5>
+                                    <h5 style="padding-left: 10px;padding-top: 20px" data-i18n="message.no.data"> 没有录制到任何数据</h5>
                                 #end
                             </table>
                         </div>
@@ -231,6 +245,11 @@
 <script src="/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/dist/js/demo.js"></script>
+<!-- Language Packs -->
+<script src="/app/lang/zh-CN.js" charset="UTF-8"></script>
+<script src="/app/lang/en-US.js" charset="UTF-8"></script>
+<!-- Internationalization -->
+<script src="/app/js/i18n.js" charset="UTF-8"></script>
 <script src="/app/js/start-repaly.js" charset="UTF-8"></script>
     #parse("blocks/fakeloader.vm")
 
