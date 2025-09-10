@@ -1,0 +1,22 @@
+spring:
+  # 启动嵌入式 Mongo 的条件：classpath 有 flapdoodle 且没有显式的 spring.data.mongodb.uri
+  mongodb:
+    embedded:
+      version: 4.0.28   # 与你 JDK/系统兼容的版本即可
+  data:
+    mongodb:
+      # 固定端口方便排查（不写也行，随机端口）
+      port: 27018
+
+# 你的 MySQL（按需改）
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/repeater?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+    username: root
+    password: gxx330238
+
+server:
+  port: 8001
+
+# 让 JPA 不去乱改结构，初始化用你自己的 SQL；如果暂时想让它补表，可设 update
+spring.jpa.hibernate.ddl-auto: none
+

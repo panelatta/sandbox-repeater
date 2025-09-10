@@ -1,0 +1,14 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://127.0.0.1:27017/repeater   # 直连同 Pod 内 sidecar
+  datasource:
+    url: jdbc:mysql://dev-mysql-all-common-aps1-master.base-service.svc.cluster.local:3306/repeater?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+    username: admin
+    password: tplinknbudev
+
+server:
+  port: 8001
+
+spring.jpa.hibernate.ddl-auto: none
+
