@@ -21,7 +21,7 @@ main(){
     if [ ! -d ${MODULE_HOME} ]; then
         mkdir -p ${MODULE_HOME} || exit_on_err 1 "permission denied mkdir ${MODULE_HOME}"
     fi
-    curl -sL https://github.com/alibaba/jvm-sandbox-repeater/releases/download/v1.0.0/repeater-stable-bin.tar | tar xz -C ${MODULE_HOME} || exit_on_err 1 "extract repeater failed"
+    curl -sL https://github.com/panelatta/sandbox-repeater/releases/download/v1.1.4/repeater-stable-bin.tar | tar xz -C ${MODULE_HOME} || exit_on_err 1 "extract repeater failed"
     echo "======                 install finished                    ======";
 }
 
