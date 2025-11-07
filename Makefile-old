@@ -1,0 +1,18 @@
+# Makefile to run the repeater-console application.
+
+# By declaring run-console as .PHONY, we ensure 'make' will always execute the command,
+# regardless of whether a file named 'run-console' exists in the directory.
+.PHONY: run-console
+
+# This target executes the Maven command to run the Spring Boot application.
+# First, we build all required modules from the root directory with -am flag.
+# Then, we change to the console-web directory to run the spring-boot plugin.
+# -DskipTests skips running the tests.
+# spring-boot:run is the goal that starts the application.
+run-console:
+	@echo "Starting repeater-console application via Spring Boot..."
+	@echo "Building all required modules..."
+	mvn clean install -pl console/console-web -am -DskipTests
+	@echo "Starting Spring Boot application..."
+	cd console/console-web && mvn spring-boot:run
+

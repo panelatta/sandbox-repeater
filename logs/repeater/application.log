@@ -1,0 +1,16 @@
+2025-11-06 16:16:24.225 [INFO ] org.tony.console.web.Application - The following profiles are active: local
+2025-11-06 16:16:29.189 [ERROR] org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+A component required a bean of type 'org.tony.console.biz.FeiShuBizService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'org.tony.console.biz.FeiShuBizService' in your configuration.
+
