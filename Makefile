@@ -1,6 +1,6 @@
 # Makefile to build & run the repeater-console application.
 
-.PHONY: build-console run-console run-console-jar clean
+.PHONY: build-console run-console run-console-jar clean docker-up docker-down
 
 MVN     ?= mvn
 MODULE  ?= console/console-web
@@ -23,4 +23,14 @@ run-console-jar: build-console
 
 clean:
 	$(MVN) clean
+
+## 启动基础依赖容器（MySQL/Redis/Mongo）
+docker-up:
+	@echo "Starting local infra via docker compose..."
+	docker compose up -d
+
+## 停止并移除基础依赖容器
+docker-down:
+	@echo "Stopping local infra via docker compose..."
+	docker compose down
 
