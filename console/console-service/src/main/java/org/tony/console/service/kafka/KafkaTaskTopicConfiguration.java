@@ -5,6 +5,7 @@ import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
@@ -20,6 +21,7 @@ import java.util.Map;
  * @Date 2023/1/13 10:13
  */
 @Configuration
+@ConditionalOnProperty(value = "kafka.task.enable", havingValue = "true")
 public class KafkaTaskTopicConfiguration {
 
     @Value("${kafka.task.server}")

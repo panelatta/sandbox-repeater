@@ -2,6 +2,7 @@ package org.tony.console.biz.kafka;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 import org.tony.console.biz.TestTaskBizService;
@@ -17,6 +18,7 @@ import javax.annotation.Resource;
  */
 @Slf4j
 @Component
+@ConditionalOnProperty(value = "kafka.task.enable", havingValue = "true")
 public class TaskKafkaConsumer {
 
     @Resource

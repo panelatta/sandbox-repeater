@@ -3,6 +3,8 @@ package org.tony.console.biz.Impl;
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
@@ -65,11 +67,15 @@ public class TestTaskBizServiceImpl implements TestTaskBizService {
     @Value("${task.sync.limit}")
     private int taskSyncLimit;
 
-    @Resource(name="kafkaTaskTemplate")
+    @Autowired(required = false)
+    @Qualifier("kafkaTaskTemplate")
     private KafkaTemplate<String, String> kafkaTaskTemplate;
 
     @Value("${kafka.task.topic}")
     private String topic;
+
+    @Value("${kafka.task.enable:true}")
+    private boolean kafkaTaskEnable;
 
     @Resource
     AppConfigService appConfigService;
@@ -124,22 +130,7 @@ public class TestTaskBizServiceImpl implements TestTaskBizService {
 
             List<Long> itemIdList = taskService.addTaskItem(taskDTO.getId(), build(taskDTO, testCaseDTOList));
             for (Long id : itemIdList) {
-                 kafkaTaskTemplate.send(topic, id.toString()).addCallback(
-                         success->{},
-                         failure->{
-                             log.error("send task item kafka message error taskItemId={}", id);
-                             //如果发送失败，直接改成手动模式
-                             TaskItemDTO taskItemDTO = taskService.queryItemById(id);
-                             if (!taskItemDTO.getStatus().equals(TaskStatus.INIT)) {
-                                 return;
-                             }
-                             try {
-                                 this.runTaskItem(taskItemDTO.getTaskId(), taskItemDTO);
-                             } catch (Exception e) {
-                                 log.error("system error", e);
-                             }
-                         }
-                 );
+                dispatchTaskItem(id);
 
             }
             page++;
@@ -187,13 +178,52 @@ public class TestTaskBizServiceImpl implements TestTaskBizService {
             List<TaskItemDTO> taskItemDTOList = taskService.queryItem(query);
 
             for (TaskItemDTO item : taskItemDTOList) {
-                kafkaTaskTemplate.send(topic, item.getId().toString());
+                if (canUseKafka()) {
+                    kafkaTaskTemplate.send(topic, item.getId().toString());
+                } else {
+                    try {
+                        this.runTaskItem(item.getTaskId(), item);
+                    } catch (Exception e) {
+                        log.error("system error", e);
+                    }
+                }
             }
 
             page++;
         }
 
 
+    }
+
+    private void dispatchTaskItem(Long id) {
+        if (canUseKafka()) {
+            kafkaTaskTemplate.send(topic, id.toString()).addCallback(
+                    success -> {},
+                    failure -> fallbackRunTaskItem(id)
+            );
+        } else {
+            fallbackRunTaskItem(id);
+        }
+    }
+
+    private void fallbackRunTaskItem(Long id) {
+        log.info("run task item directly, kafka disabled or send failed, taskItemId={}", id);
+        TaskItemDTO taskItemDTO = taskService.queryItemById(id);
+        if (taskItemDTO == null) {
+            return;
+        }
+        if (!taskItemDTO.getStatus().equals(TaskStatus.INIT)) {
+            return;
+        }
+        try {
+            this.runTaskItem(taskItemDTO.getTaskId(), taskItemDTO);
+        } catch (Exception e) {
+            log.error("system error", e);
+        }
+    }
+
+    private boolean canUseKafka() {
+        return kafkaTaskEnable && kafkaTaskTemplate != null;
     }
 
     @Override
